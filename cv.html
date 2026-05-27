@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — J. Morris</title>
+  <meta name="description" content="Josh Morris — systems engineer. Experience, skills, and selected work.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="site-title" href="/">J. Morris</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">home</a>
+        <a href="/about.html">about</a>
+        <a href="/cv.html" aria-current="page">cv</a>
+        <a href="/thoughts.html">thoughts</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- TIP: this CV is structured as plain HTML — edit any role, title, date, or description in place. Add new <div class="cv-role"> blocks for additional positions. -->
+
+      <div class="cv-header">
+        <h1 class="cv-name">Josh Morris</h1>
+        <p class="cv-role-line">Systems Engineer · London</p>
+        <p class="cv-contact"><a href="mailto:hello@morrisjb.com">hello@morrisjb.com</a> · <a href="https://linkedin.com">linkedin</a></p>
+      </div>
+
+      <p style="font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">A short summary about you — two or three sentences on what you do, the kind of work that interests you, and where your strengths sit. Replace this paragraph with your own framing.</p>
+
+      <section class="cv-section">
+        <h2 class="section-title">experience</h2>
+
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">Senior Systems Engineer</span>
+            <span class="cv-dates">2023 — present</span>
+          </div>
+          <p class="cv-org">[Your current employer], London</p>
+          <p class="cv-description">A two- or three-sentence description of what you do here — the scope of clients, the work you lead on (M365 administration, tenant-to-tenant migrations, endpoint management, AI tooling rollouts), and any notable outcomes. Keep it specific; numbers and named projects beat adjectives.</p>
+        </div>
+
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">Systems Engineer</span>
+            <span class="cv-dates">20XX — 2023</span>
+          </div>
+          <p class="cv-org">[Previous employer], London</p>
+          <p class="cv-description">What you did, what you were known for, what shipped under your watch. The reader is scanning, so lead with the most distinctive thing.</p>
+        </div>
+
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">[Earlier role]</span>
+            <span class="cv-dates">20XX — 20XX</span>
+          </div>
+          <p class="cv-org">[Earlier employer]</p>
+          <p class="cv-description">Brief description of the role and what it gave you.</p>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">selected work</h2>
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">400-user tenant-to-tenant migration</span>
+            <span class="cv-dates">2025</span>
+          </div>
+          <p class="cv-description">Cross-tenant M365 migration for a pure Entra-joined estate using N-able N-central and Cloudiway. Designed the device migration path, handled Conditional Access during the cutover window, and ran the end-to-end communications plan.</p>
+        </div>
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">Admin consent workflow & governance automation</span>
+            <span class="cv-dates">2024</span>
+          </div>
+          <p class="cv-description">Built a Power Automate-driven admin consent flow against Microsoft Graph, with downstream Entra ID Access Reviews and automated guest account hygiene. Reduced ad-hoc consent grants to effectively zero.</p>
+        </div>
+        <!-- Add more items as you like, or remove this whole section. -->
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">skills</h2>
+        <p class="cv-skills">
+          <em>Platforms:</em> Microsoft 365 · Azure / Entra ID · Intune · Exchange Online · SharePoint Online · Defender · Purview<br>
+          <em>Tooling:</em> N-able N-central · ManageEngine Endpoint Central · Cloudiway · AvePoint Fly · HaloPSA · ConnectWise · Passportal<br>
+          <em>Automation &amp; scripting:</em> PowerShell · Microsoft Graph · Power Automate · Power Apps · AI Builder<br>
+          <em>Adjacent:</em> Active Directory · Conditional Access design · DKIM/SPF/DMARC · MDM / MAM policy
+        </p>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="section-title">education &amp; certifications</h2>
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">[Degree], [University]</span>
+            <span class="cv-dates">20XX</span>
+          </div>
+        </div>
+        <div class="cv-role">
+          <div class="cv-role-header">
+            <span class="cv-title">Microsoft certifications — list as relevant</span>
+            <span class="cv-dates"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="/about.html">about</a> ·
+      <a href="/cv.html">cv</a> ·
+      <a href="mailto:hello@morrisjb.com">email</a> ·
+      <a href="https://linkedin.com">linkedin</a>
+    </footer>
+  </div>
+</body>
+</html>

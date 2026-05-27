@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100" role="img" aria-label="J. Morris">
+  <title>J. Morris</title>
+  <circle cx="60" cy="52" r="3" fill="#1a1a1a"/>
+  <text x="200" y="64" text-anchor="middle" font-size="56" font-family="'Times New Roman', Times, Georgia, serif" font-weight="400" fill="#1a1a1a">J. Morris</text>
+  <circle cx="340" cy="52" r="3" fill="#1a1a1a"/>
+</svg>
