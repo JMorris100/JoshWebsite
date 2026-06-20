@@ -14,7 +14,7 @@
   --faint: #8A97A4;
   --accent: #5B8DB8;
   --accent-soft: #A9C7DE;
-  --max-width: 720px;
+  --max-width: 560px;
   --header-max: 1120px;
 }
 
@@ -86,7 +86,7 @@ body {
 /* ---------- Layout ---------- */
 .page {
   max-width: var(--max-width);
-  margin: 0 auto;
+  margin: 0;
   padding: 3.5rem 2rem 4rem;
 }
 
@@ -307,7 +307,7 @@ blockquote {
 }
 .site-footer__inner {
   max-width: var(--max-width);
-  margin: 0 auto;
+  margin: 0;
   padding: 2rem;
   font-size: 0.82rem;
   color: var(--faint);
