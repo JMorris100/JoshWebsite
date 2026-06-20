@@ -4,64 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>J. Morris</title>
-  <meta name="description" content="A bit about me, and the things that hold my attention.">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="description" content="Josh Morris — IT Systems Engineer in London. Writing on Microsoft 365, cybersecurity, and how MSPs run.">
+  <link rel="icon" type="image/png" href="/jmorrisfavicon.png">
+  <link rel="apple-touch-icon" href="/appletouchicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <a class="site-title" href="/">J. Morris</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/" aria-label="J. Morris — home">
+        <svg viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JM monogram">
+          <text x="0" y="44" font-family="Newsreader, Georgia, serif" font-size="56" font-weight="500" letter-spacing="-1" fill="#1B2A36">JM</text>
+        </svg>
+      </a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="/" aria-current="page">home</a>
-        <a href="/about.html">about</a>
-        <a href="/cv.html">cv</a>
-        <a href="/thoughts.html">thoughts</a>
+        <a href="/about.html">About</a>
+        <a href="/cv.html">CV</a>
+        <a href="/thoughts.html">Recent Posts</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <!-- HERO: edit the greeting, title, and bio here -->
-      <section class="hero">
-        <p class="hero-greeting">hello —</p>
-        <h1 class="hero-title">I'm Josh, a systems engineer in London.</h1>
-        <p class="hero-bio">I work in the MSP world — Microsoft 365, endpoint management, migrations — and write here about what actually works in IT for small businesses, where AI fits in the stack, and the occasional detour into how technology shapes the way we work.</p>
-      </section>
+  <main class="page">
+    <!-- HERO: edit the welcome, title, and bio here -->
+    <section class="hero">
+      <p class="hero-welcome">Welcome</p>
+      <h1 class="hero-title">I'm Josh, an IT Systems Engineer in London.</h1>
+      <p class="lede">I've been working for 5 years now, mostly around Microsoft 365 and cybersecurity services. On top of this, I'm interested in how MSPs actually run day to day: reporting, training and development, the information systems behind it all. I'm also drawn to the commercial side: how MSPs compete in the market.</p>
+      <p class="lede">I've made this site as a personal space to publish my thoughts.</p>
+    </section>
 
-      <!-- RECENT THOUGHTS: add new <li> entries here when you publish posts -->
-      <section>
-        <h2 class="section-title">recent thoughts</h2>
-        <ul class="posts">
-          <li class="post-item">
-            <p class="post-meta">may 2026 · welcome</p>
-            <h3 class="post-title"><a href="/posts/welcome.html">Starting</a></h3>
-            <p class="post-excerpt">A short note on why this site exists and what I'm planning to do with it.</p>
-          </li>
-        </ul>
-      </section>
+    <!-- RECENT POSTS: add new <li> entries here when you publish -->
+    <section>
+      <h2 class="section-title">Recent posts</h2>
+      <ul class="posts">
+        <li class="post-item">
+          <p class="post-meta">May 2026 · Welcome</p>
+          <h3 class="post-title"><a href="/posts/welcome.html">Starting</a></h3>
+          <p class="post-excerpt">A short note on why this site exists and what I'm planning to do with it.</p>
+        </li>
+      </ul>
+    </section>
 
-      <!-- TOPICS: edit or remove as you like -->
-      <section>
-        <h2 class="section-title">topics</h2>
-        <ul class="tag-list">
-          <li><a class="tag" href="/thoughts.html">microsoft 365</a></li>
-          <li><a class="tag" href="/thoughts.html">msp strategy</a></li>
-          <li><a class="tag" href="/thoughts.html">migrations</a></li>
-          <li><a class="tag" href="/thoughts.html">ai in it</a></li>
-          <li><a class="tag" href="/thoughts.html">essays</a></li>
-        </ul>
-      </section>
-    </main>
+    <!-- TOPICS: edit or remove as you like -->
+    <section>
+      <h2 class="section-title">Topics</h2>
+      <ul class="tag-list">
+        <li><a class="tag" href="/thoughts.html">Microsoft 365</a></li>
+        <li><a class="tag" href="/thoughts.html">cybersecurity</a></li>
+        <li><a class="tag" href="/thoughts.html">MSP strategy</a></li>
+        <li><a class="tag" href="/thoughts.html">migrations</a></li>
+        <li><a class="tag" href="/thoughts.html">essays</a></li>
+      </ul>
+    </section>
+  </main>
 
-    <footer class="site-footer">
-      <a href="/about.html">about</a> ·
-      <a href="/cv.html">cv</a> ·
-      <a href="mailto:hello@morrisjb.com">email</a> ·
-      <a href="https://linkedin.com">linkedin</a>
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__links">
+        <a href="/about.html">About</a>
+        <a href="/cv.html">CV</a>
+        <a href="mailto:hello@morrisjb.com">Email</a>
+        <a href="https://linkedin.com">LinkedIn</a>
+      </div>
+      <div class="site-footer__note">© 2026 Josh Morris</div>
+    </div>
+  </footer>
 </body>
 </html>

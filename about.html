@@ -4,59 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — J. Morris</title>
-  <meta name="description" content="A bit about me — Josh Morris, a systems engineer in London.">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta name="description" content="A bit about me — Josh Morris, an IT Systems Engineer in London.">
+  <link rel="icon" type="image/png" href="/jmorrisfavicon.png">
+  <link rel="apple-touch-icon" href="/appletouchicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <a class="site-title" href="/">J. Morris</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/" aria-label="J. Morris — home">
+        <svg viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JM monogram">
+          <text x="0" y="44" font-family="Newsreader, Georgia, serif" font-size="56" font-weight="500" letter-spacing="-1" fill="#1B2A36">JM</text>
+        </svg>
+      </a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="/">home</a>
-        <a href="/about.html" aria-current="page">about</a>
-        <a href="/cv.html">cv</a>
-        <a href="/thoughts.html">thoughts</a>
+        <a href="/about.html" aria-current="page">About</a>
+        <a href="/cv.html">CV</a>
+        <a href="/thoughts.html">Recent Posts</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <h1>About</h1>
+  <main class="page">
+    <!-- TIP: edit freely. Keep the intro short, then a few plain sections. -->
+    <p class="eyebrow">About</p>
+    <hr class="rule">
 
-      <!-- TIP: edit the paragraphs below freely. The structure (intro, then three short sections) is just a starting point — feel free to collapse or expand. -->
+    <p class="about-intro">A bit about me, and the things that hold my attention.</p>
 
-      <p class="about-intro">A bit about me, and the things that hold my attention.</p>
+    <h2>Who I am</h2>
+    <p>I'm Josh, an IT Systems Engineer based in London. I've been working for five years now, mostly around Microsoft 365 and cybersecurity services. I work at a managed service provider, where the days are split between tenant administration, endpoint management, client communications, and trying to make IT actually work for small businesses without overpromising.</p>
+    <p>Outside the technical side, I read widely and think too much about how this work is run and where it's heading. This site exists because I wanted somewhere to write that down.</p>
 
-      <h2>Who I am</h2>
-      <p>I'm Josh — a systems engineer based in London. I work at a managed service provider, where my days are split between Microsoft 365 administration, endpoint management, client communications, and trying to make IT actually work for small businesses without overpromising.</p>
-      <p>Outside work, I read widely and think too much about how technology shapes the way we work and live. This site exists because I wanted somewhere to write that down.</p>
+    <h2>What I do</h2>
+    <p>Most of what I work on falls under one of a few headings: keeping Microsoft 365 tenants healthy and secure; running migrations between them when companies merge, split, or change identity stacks; and figuring out which automation and AI tooling is genuinely worth deploying versus the noise.</p>
+    <p>I'm a practitioner more than a strategist. I write from inside the work, not above it, and that tends to be where the useful detail lives.</p>
 
-      <h2>What I do</h2>
-      <p>Most of what I work on falls under one of three headings: keeping Microsoft 365 tenants healthy and secure; running migrations between them when companies merge, split, or change identity stacks; and figuring out which automation and AI tooling is genuinely worth deploying versus the noise.</p>
-      <p>I'm a practitioner more than a strategist — I write from inside the work, not above it. That tends to be where the useful detail lives.</p>
+    <h2>What I write about</h2>
+    <p>A few rough buckets. The MSP view from the floor: what running IT for small businesses actually looks like, including the unglamorous bits. Microsoft 365 in practice: migrations, identity, Conditional Access, Intune, and the gap between vendor documentation and reality. And the commercial side of MSPs: how they price, position, and compete in the market as it stands.</p>
+    <p>Occasionally something further afield: a book, a tool, a question about how this work fits into the wider direction technology is heading.</p>
 
-      <h2>What I write about</h2>
-      <p>Three rough buckets:</p>
-      <ul>
-        <li><em>The MSP view from the floor</em> — what running IT for small businesses actually looks like, including the unglamorous bits.</li>
-        <li><em>Microsoft 365 in practice</em> — migrations, identity, Conditional Access, Intune, and the gap between vendor documentation and reality.</li>
-        <li><em>AI in IT services</em> — what works, what doesn't, and why the honest answer is usually narrower than the marketing.</li>
-      </ul>
-      <p>Occasionally something further afield — a book, a tool, a question about how this work fits into the wider direction technology is heading.</p>
+    <h2>Get in touch</h2>
+    <p>You can reach me at <a href="mailto:hello@morrisjb.com">hello@morrisjb.com</a>, or find me on <a href="https://linkedin.com">LinkedIn</a>. If you're working on something interesting in the MSP space or in applied AI for IT, I'd genuinely like to hear from you.</p>
+  </main>
 
-      <h2>Get in touch</h2>
-      <p>You can reach me at <a href="mailto:hello@morrisjb.com">hello@morrisjb.com</a>, or find me on <a href="https://linkedin.com">LinkedIn</a>. If you're working on something interesting in the MSP space or in applied AI for IT, I'd genuinely like to hear from you.</p>
-    </main>
-
-    <footer class="site-footer">
-      <a href="/about.html">about</a> ·
-      <a href="/cv.html">cv</a> ·
-      <a href="mailto:hello@morrisjb.com">email</a> ·
-      <a href="https://linkedin.com">linkedin</a>
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__links">
+        <a href="/about.html">About</a>
+        <a href="/cv.html">CV</a>
+        <a href="mailto:hello@morrisjb.com">Email</a>
+        <a href="https://linkedin.com">LinkedIn</a>
+      </div>
+      <div class="site-footer__note">© 2026 Josh Morris</div>
+    </div>
+  </footer>
 </body>
 </html>
