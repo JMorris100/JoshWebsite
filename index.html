@@ -1,79 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>J. Morris</title>
-  <meta name="description" content="Josh Morris — IT Systems Engineer in London. Writing on Microsoft 365, cybersecurity, and how MSPs run.">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/jmorrisfavicon.png">
-  <link rel="apple-touch-icon" href="/appletouchicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Polyoptic — UK official statistics, plotted against who was in power</title>
+<meta name="description" content="Polyoptic aggregates UK official statistics and lets you rebase, deflate and compare them, with the governing party of the day shown behind every chart.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#4633A8; --purple-d:#2F2178; --purple-l:#EDE9F9; --purple-xl:#F7F5FD;
+  --ink:#14121C; --muted:#6E6A80; --faint:#9A96AC;
+  --rule:#E3E1EB; --rule-2:#F0EFF5; --bg:#FFFFFF; --panel:#FBFBFD;
+  --con:#0B6FB4; --lab:#C8102E; --coa:#5E9FD0;
+  --warn:#8A5A00; --warn-bg:#FFF8E8; --warn-rule:#E9D5A3;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--purple);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+header{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--bg);z-index:30}
+.hrow{display:flex;align-items:center;gap:22px;padding:11px 0}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink)}
+.brand:hover{text-decoration:none}
+#logo{width:27px;height:27px;display:block}
+.wm{font-weight:600;letter-spacing:-.02em;font-size:17px}
+.wm .b{color:var(--purple)}
+nav{margin-left:auto;display:flex;gap:20px;font-size:13.5px}
+nav a{color:var(--muted)}
+nav a:hover{color:var(--ink);text-decoration:none}
+.cta{
+  border:1px solid var(--purple);background:var(--purple);color:#fff!important;
+  padding:6px 13px;font-size:13px;border-radius:0;
+}
+.cta:hover{background:var(--purple-d);border-color:var(--purple-d);text-decoration:none}
+
+/* ── hero ── */
+.hero{padding:64px 0 30px;border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--purple);margin-bottom:16px;
+}
+h1{
+  font-size:clamp(30px,5.2vw,52px);line-height:1.08;letter-spacing:-.028em;
+  font-weight:600;margin:0 0 18px;max-width:16ch;
+}
+h1 em{font-style:normal;color:var(--purple)}
+.lede{font-size:17px;color:var(--muted);max-width:56ch;margin:0 0 26px;line-height:1.55}
+.herobtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{
+  border:1px solid var(--rule);background:var(--bg);color:var(--ink);
+  padding:9px 15px;font-size:14px;border-radius:0;display:inline-block;
+}
+.btn:hover{border-color:var(--purple);background:var(--purple-xl);text-decoration:none}
+.btn.pri{background:var(--purple);border-color:var(--purple);color:#fff}
+.btn.pri:hover{background:var(--purple-d);border-color:var(--purple-d)}
+
+/* ── signature: the era ribbon chart ── */
+.demo{border:1px solid var(--rule);margin:36px 0 0;background:var(--bg)}
+.demohead{padding:13px 16px 10px;border-bottom:1px solid var(--rule-2);display:flex;
+  align-items:baseline;gap:12px;flex-wrap:wrap}
+.demotitle{font-size:15px;font-weight:600}
+.demosub{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted)}
+.demofoot{padding:9px 16px;border-top:1px solid var(--rule-2);display:flex;gap:16px;
+  flex-wrap:wrap;font-family:'IBM Plex Mono';font-size:10px;color:var(--muted)}
+.swatch{display:inline-flex;align-items:center;gap:6px}
+.swatch i{width:14px;height:4px;display:block}
+svg{display:block;width:100%;height:auto}
+
+/* ── sections ── */
+section{padding:52px 0;border-bottom:1px solid var(--rule)}
+h2{font-size:23px;letter-spacing:-.018em;font-weight:600;margin:0 0 6px}
+.sublede{color:var(--muted);margin:0 0 26px;max-width:62ch}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.tile{
+  border:1px solid var(--rule);padding:15px 16px 14px;color:var(--ink);
+  display:block;transition:border-color .12s,background .12s;
+}
+.tile:hover{border-color:var(--purple);background:var(--purple-xl);text-decoration:none}
+.tile .tname{font-weight:600;font-size:15px;margin-bottom:3px}
+.tile .tcount{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted)}
+.tile .tdesc{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.45}
+.tile.soon{opacity:.55}
+.tile.soon:hover{border-color:var(--rule);background:var(--bg)}
+.badge{
+  font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:1px 5px;color:var(--muted);margin-left:7px;
+  vertical-align:2px;
+}
+.badge.live{border-color:var(--purple);color:var(--purple)}
+
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pair{
+  border:1px solid var(--rule);padding:15px 16px;color:var(--ink);display:block;
+  transition:border-color .12s,background .12s;
+}
+.pair:hover{border-color:var(--purple);background:var(--purple-xl);text-decoration:none}
+.pair .q{font-size:15px;font-weight:500;line-height:1.35;margin-bottom:6px}
+.pair .m{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--muted)}
+
+.honest{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule)}
+@media(max-width:760px){.honest{grid-template-columns:1fr}}
+.hcell{padding:16px 18px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.hcell:nth-child(2n){border-right:none}
+.hcell:nth-last-child(-n+2){border-bottom:none}
+@media(max-width:760px){.hcell{border-right:none}.hcell:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
+  .hcell:last-child{border-bottom:none}}
+.hcell b{display:block;font-size:14px;margin-bottom:4px}
+.hcell span{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+.warnbox{
+  border:1px solid var(--warn-rule);background:var(--warn-bg);padding:11px 14px;
+  font-size:13.5px;color:#5C3D00;margin-bottom:26px;
+}
+.warnbox b{font-weight:600}
+
+footer{padding:34px 0 52px;color:var(--muted);font-size:13px}
+.frow{display:flex;gap:26px;flex-wrap:wrap;align-items:baseline}
+.frow .sp{margin-left:auto;font-family:'IBM Plex Mono';font-size:10.5px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="/" aria-label="J. Morris — home">
-        <svg viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JM monogram">
-          <text x="0" y="44" font-family="Newsreader, Georgia, serif" font-size="56" font-weight="500" letter-spacing="-1" fill="#1B2A36">JM</text>
-        </svg>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="/about.html">About</a>
-        <a href="/cv.html">CV</a>
-        <a href="/thoughts.html">Recent Posts</a>
-      </nav>
+
+<header>
+  <div class="wrap hrow">
+    <a class="brand" href="index.html">
+      <svg id="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M1.5 17.5C5 8 11 3.5 17.5 3.5c7 0 11.5 5 13 11.5-3 9-9.5 13.5-16 13.5C8 28.5 3.5 24 1.5 17.5Z"
+              fill="none" stroke="#4633A8" stroke-width="2.1" stroke-linejoin="round"/>
+        <rect x="10.2" y="15.5" width="2.4" height="5.4" fill="#4633A8"/>
+        <rect x="14"   y="12.2" width="2.4" height="8.7" fill="#4633A8"/>
+        <rect x="17.8" y="14"   width="2.4" height="6.9" fill="#4633A8"/>
+        <rect x="21.6" y="10.4" width="2.4" height="10.5" fill="#4633A8"/>
+      </svg>
+      <span class="wm">poly<span class="b">optic</span></span>
+    </a>
+    <nav>
+      <a href="#topics">Topics</a>
+      <a href="#questions">Questions</a>
+      <a href="#method">Method</a>
+      <a class="cta" href="explore.html">Explorer</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">UK official statistics</div>
+    <h1>Every number, against <em>who was in power</em> at the time.</h1>
+    <p class="lede">
+      Polyoptic collects statistics that government already publishes and lets you do the
+      things a chart in a press release never does — rebase to a common year, adjust to
+      real terms, put two series side by side, and see which administration held office
+      across every stretch of the line.
+    </p>
+    <div class="herobtns">
+      <a class="btn pri" href="explore.html">Open the explorer</a>
+      <a class="btn" href="#method">How it works</a>
     </div>
-  </header>
 
-  <main class="page">
-    <!-- HERO: edit the welcome, title, and bio here -->
-    <section class="hero">
-      <p class="hero-welcome">Welcome</p>
-      <h1 class="hero-title">I'm Josh, an IT Systems Engineer in London.</h1>
-      <p class="lede">I've spent the past 5 years at an MSP, getting stuck into everything from the technical side to operations and the commercial side of the business.</p>
-      <p class="lede">I've made this site as a personal space to publish my thoughts.</p>
-      <p class="lede"><a href="/about.html">A bit more in depth about me</a></p>
-    </section>
-
-    <!-- RECENT POSTS: add new <li> entries here when you publish -->
-    <section>
-      <h2 class="section-title">Recent posts</h2>
-      <ul class="posts">
-        <li class="post-item">
-          <p class="post-meta">May 2026 · Welcome</p>
-          <h3 class="post-title"><a href="/posts/welcome.html">Starting</a></h3>
-          <p class="post-excerpt">A short note on why this site exists and what I'm planning to do with it.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- TOPICS: edit or remove as you like -->
-    <section>
-      <h2 class="section-title">Topics</h2>
-      <ul class="tag-list">
-        <li><a class="tag" href="/thoughts.html">Microsoft 365</a></li>
-        <li><a class="tag" href="/thoughts.html">cybersecurity</a></li>
-        <li><a class="tag" href="/thoughts.html">MSP strategy</a></li>
-        <li><a class="tag" href="/thoughts.html">migrations</a></li>
-        <li><a class="tag" href="/thoughts.html">essays</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__links">
-        <a href="/about.html">About</a>
-        <a href="/cv.html">CV</a>
-        <a href="mailto:hello@morrisjb.com">Email</a>
-        <a href="https://linkedin.com">LinkedIn</a>
+    <div class="demo">
+      <div class="demohead">
+        <span class="demotitle">House prices and average earnings</span>
+        <span class="demosub">Rebased 1997 = 100 · United Kingdom</span>
       </div>
-      <div class="site-footer__note">© 2026 Josh Morris</div>
+      <div style="padding:10px 12px 2px"><svg id="demo" viewBox="0 0 900 300" role="img"
+        aria-label="Two rebased index lines from 1997 to 2025 above a ribbon showing the governing party"></svg></div>
+      <div class="demofoot">
+        <span class="swatch"><i style="background:#4633A8"></i>House prices</span>
+        <span class="swatch"><i style="background:#C8102E"></i>Average earnings</span>
+        <span class="swatch" style="margin-left:auto">
+          <i style="background:var(--con)"></i>Con
+          <i style="background:var(--coa)"></i>Coalition
+          <i style="background:var(--lab)"></i>Lab
+        </span>
+      </div>
     </div>
-  </footer>
+  </div>
+
+  <section id="topics">
+    <h2>Topics</h2>
+    <p class="sublede">
+      Three sections are built out. The rest are queued — the data model treats topics as
+      tags rather than folders, so adding one costs a query, not a rebuild.
+    </p>
+    <div class="tiles">
+      <a class="tile" href="explore.html#s=gdp,unemp&c=line&t=index&f=1997&to=2025&r=1">
+        <div class="tname">Economy <span class="badge live">Live</span></div>
+        <div class="tcount">32 indicators</div>
+        <div class="tdesc">Output, prices, pay, employment, rates and the public finances.</div>
+      </a>
+      <a class="tile" href="explore.html#s=hpi,completions&c=line&t=index&f=1997&to=2025&r=1">
+        <div class="tname">Housing <span class="badge live">Live</span></div>
+        <div class="tcount">21 indicators</div>
+        <div class="tdesc">Prices, rents, supply, social stock, homelessness and tenure.</div>
+      </a>
+      <a class="tile" href="explore.html#s=att8,funding&c=line&t=none&f=2011&to=2025&r=1">
+        <div class="tname">Education <span class="badge live">Live</span></div>
+        <div class="tcount">20 indicators</div>
+        <div class="tdesc">Attainment, funding, absence, exclusions, teachers and entry to HE.</div>
+      </a>
+      <a class="tile" href="explore.html#s=rtt,rtt18&c=line&t=none&f=2008&to=2025&r=1">
+        <div class="tname">Health</div>
+        <div class="tcount">17 indicators</div>
+        <div class="tdesc">Waiting lists, urgent care, workforce, life expectancy and mortality.</div>
+      </a>
+      <a class="tile" href="explore.html#s=csew,recorded&c=line&t=none&f=2003&to=2025&r=1">
+        <div class="tname">Crime &amp; Justice</div>
+        <div class="tcount">10 indicators</div>
+        <div class="tdesc">Survey and recorded crime, charge rates, courts and prisons.</div>
+      </a>
+      <a class="tile" href="explore.html#s=railjourneys,busjourneys&c=line&t=index&f=2004&to=2025&r=1">
+        <div class="tname">Transport</div>
+        <div class="tcount">9 indicators</div>
+        <div class="tdesc">Rail, bus, road traffic, casualties and the switch to electric.</div>
+      </a>
+      <a class="tile" href="explore.html#s=ghg,renewshare&c=line&t=none&f=1990&to=2025&r=1">
+        <div class="tname">Environment &amp; Energy</div>
+        <div class="tcount">11 indicators</div>
+        <div class="tdesc">Emissions, generation mix, energy prices, air and water quality.</div>
+      </a>
+      <a class="tile" href="explore.html#s=population,netmig&c=line&t=none&f=1991&to=2025&r=1">
+        <div class="tname">Population &amp; Migration</div>
+        <div class="tcount">10 indicators</div>
+        <div class="tdesc">Population, migration, births and deaths, visas and asylum.</div>
+      </a>
+      <a class="tile" href="explore.html#s=tme,receipts&c=line&t=none&f=1980&to=2025&r=1">
+        <div class="tname">Public Spending</div>
+        <div class="tcount">12 indicators</div>
+        <div class="tdesc">A lens across the others — spending, receipts, debt and caseloads.</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="questions">
+    <h2>Questions worth a chart</h2>
+    <p class="sublede">
+      Each of these opens the explorer already loaded. You never face an empty canvas.
+    </p>
+    <div class="pairs">
+      <a class="pair" href="explore.html#s=hpi,awe&c=line&t=index&f=1997&to=2025&r=1">
+        <div class="q">Have house prices outrun pay, and by how much?</div>
+        <div class="m">House Price Index · Average weekly earnings · rebased 1997</div>
+      </a>
+      <a class="pair" href="explore.html#s=socialstock,tempacc&c=line&t=index&f=1997&to=2025&r=1">
+        <div class="q">What happened to social housing as temporary accommodation rose?</div>
+        <div class="m">Social housing stock · Households in temporary accommodation</div>
+      </a>
+      <a class="pair" href="explore.html#s=funding,att8&c=line&t=none&f=2011&to=2025&r=1">
+        <div class="q">Did per-pupil funding and attainment move together?</div>
+        <div class="m">School funding per pupil, real terms · Attainment 8</div>
+      </a>
+      <a class="pair" href="explore.html#s=csew,recorded&c=line&t=none&f=2003&to=2025&r=1">
+        <div class="q">Why do the two measures of crime disagree?</div>
+        <div class="m">Crime Survey incidence · Police recorded crime</div>
+      </a>
+      <a class="pair" href="explore.html#s=gdp,gdppc&c=line&t=index&f=1997&to=2025&r=1">
+        <div class="q">How far has GDP per head diverged from GDP since 2008?</div>
+        <div class="m">Gross domestic product · GDP per head · rebased</div>
+      </a>
+      <a class="pair" href="explore.html#s=hpi&g=region&a=UKI,UKC,UKD,UKK&c=line&t=index&f=1997&to=2025&r=1&v=map">
+        <div class="q">Where did house prices rise fastest?</div>
+        <div class="m">House Price Index · by region · map view</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="method">
+    <h2>The warnings are the product</h2>
+    <p class="sublede">
+      Putting two lines on one chart is easy. Making the comparison honest is the hard part,
+      and it is the part nobody else bothers with. The explorer refuses to compare across a
+      mismatch quietly.
+    </p>
+    <div class="honest">
+      <div class="hcell"><b>Different geographies</b><span>England-only against UK-wide is not like for like, and the chart says so rather than letting the shapes imply otherwise.</span></div>
+      <div class="hcell"><b>Different year bases</b><span>Academic and financial years plot at the calendar year they start in, so two points on the same vertical can sit twelve months apart.</span></div>
+      <div class="hcell"><b>Different units</b><span>Two lines on separate scales can be made to look related by scaling alone. The warning offers a one-click rebase.</span></div>
+      <div class="hcell"><b>Inapplicable transforms</b><span>You can deflate a cash figure. You cannot deflate a rate. Transforms that would produce nonsense are greyed out, not silently applied.</span></div>
+      <div class="hcell"><b>Series discontinuities</b><span>The Labour Force Survey became the Transformed LFS; absence recording changed after 2020. The chart draws the break instead of a smooth line across it.</span></div>
+      <div class="hcell"><b>Devolved definitions</b><span>Scottish qualifications are not GCSEs, and each nation's NHS counts waiting differently. Compare the trend inside a nation, not the level between them.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where the numbers come from</h2>
+    <p class="sublede">
+      Polyoptic publishes no original data. Everything here is collected by ONS, MHCLG, DfE,
+      the Home Office, DESNZ, Defra, the Department for Transport, NHS England, the Bank of
+      England, the OBR and HM Treasury, and is used under the Open Government Licence v3.0.
+      Every chart carries its sources, its licence and a CSV download.
+    </p>
+    <p class="sublede" style="margin-bottom:0">
+      Figures get revised. The published bundle is committed to the repository each week, so
+      <code style="font-family:'IBM Plex Mono';font-size:12.5px">git log data/bundle.json</code>
+      shows exactly when a number changed and by how much.
+    </p>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <div class="frow">
+    <span>Polyoptic — polyoptic.co</span>
+    <a href="explore.html">Explorer</a>
+    <span>Contains public sector information licensed under the Open Government Licence v3.0</span>
+    <span class="sp">Not affiliated with any government department</span>
+  </div>
+</footer>
+
+<script>
+/* ── hero chart ────────────────────────────────────────────────
+   PLACEHOLDER SHAPES. Replaced when the ingest runs; until then
+   these are illustrative curves, not statistics.
+   ───────────────────────────────────────────────────────────── */
+(function(){
+  const FROM = 1997, TO = 2025, W = 900, H = 300, M = {t:14,r:20,b:30,l:44};
+  const ERAS = [
+    {from:1997.35,to:2010.35,c:"var(--lab)",p:"Labour"},
+    {from:2010.35,to:2015.35,c:"var(--coa)",p:"Conservative–Lib Dem coalition"},
+    {from:2015.35,to:2024.5, c:"var(--con)",p:"Conservative"},
+    {from:2024.5, to:2026,   c:"var(--lab)",p:"Labour"},
+  ];
+  const n = TO - FROM + 1;
+  const shape = (f) => Array.from({length:n}, (_,i) => f(i/(n-1)));
+  const houses  = shape(t => 100 + 245*t + 60*Math.sin(t*3.1) - 34*Math.exp(-((t-0.42)**2)/0.006));
+  const earnings= shape(t => 100 + 108*t + 12*Math.sin(t*4.4));
+
+  const x = y => M.l + (y-FROM)/(TO-FROM)*(W-M.l-M.r);
+  const all = [...houses, ...earnings];
+  const lo = 80, hi = Math.max(...all)*1.04;
+  const yv = v => H-M.b-12 - (v-lo)/(hi-lo)*(H-M.t-M.b-12);
+
+  let g = "";
+  for (let t = 100; t <= hi; t += 100){
+    g += `<line x1="${M.l}" x2="${W-M.r}" y1="${yv(t)}" y2="${yv(t)}" stroke="var(--rule-2)"/>
+          <text x="${M.l-8}" y="${yv(t)+3.5}" text-anchor="end"
+            style="font-family:'IBM Plex Mono';font-size:10px;fill:var(--muted)">${t}</text>`;
+  }
+  for (let yr = 2000; yr <= TO; yr += 5)
+    g += `<text x="${x(yr)}" y="${H-M.b+15}" text-anchor="middle"
+            style="font-family:'IBM Plex Mono';font-size:10px;fill:var(--muted)">${yr}</text>`;
+  g += `<line x1="${M.l}" x2="${W-M.r}" y1="${H-M.b-12}" y2="${H-M.b-12}" stroke="var(--rule)"/>`;
+
+  for (const e of ERAS){
+    const a = Math.max(x(Math.max(e.from,FROM)), M.l), b = Math.min(x(Math.min(e.to,TO+1)), W-M.r);
+    if (b > a) g += `<rect x="${a.toFixed(1)}" y="${H-M.b-6}" width="${(b-a).toFixed(1)}" height="7"
+      fill="${e.c}" opacity=".72"><title>${e.p}</title></rect>`;
+  }
+
+  const draw = (vals, colour) => {
+    const d = vals.map((v,i) => `${i?"L":"M"}${x(FROM+i).toFixed(1)},${yv(v).toFixed(1)}`).join(" ");
+    return `<path d="${d}" fill="none" stroke="${colour}" stroke-width="2.2"
+      stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${x(TO)}" cy="${yv(vals.at(-1))}" r="3.2" fill="${colour}"/>`;
+  };
+  g += draw(earnings, "#C8102E") + draw(houses, "#4633A8");
+  document.getElementById("demo").innerHTML = g;
+})();
+</script>
 </body>
 </html>
