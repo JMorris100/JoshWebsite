@@ -22,6 +22,7 @@
         </svg>
       </a>
       <nav class="site-nav" aria-label="Primary">
+        <a href="/#projects">Projects</a>
         <a href="/about.html">About</a>
         <a href="/cv.html">CV</a>
         <a href="/thoughts.html">Recent Posts</a>
@@ -37,6 +38,30 @@
       <p class="lede">I've spent the past 5 years at an MSP, getting stuck into everything from the technical side to operations and the commercial side of the business.</p>
       <p class="lede">I've made this site as a personal space to publish my thoughts.</p>
       <p class="lede"><a href="/about.html">A bit more in depth about me</a></p>
+    </section>
+
+    <!-- PROJECTS: copy a <li class="project-card"> block to add another project -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <ul class="projects">
+        <li class="project-card">
+          <a class="project-card__image" href="https://polyoptic.co/" aria-hidden="true" tabindex="-1">
+            <img src="/projects/polyoptic.jpg" alt="" width="1200" height="675" loading="lazy">
+          </a>
+          <div class="project-card__body">
+            <p class="post-meta">2026 · Data · Side project</p>
+            <h3 class="project-card__title"><a href="https://polyoptic.co/">Polyoptic Explorer</a></h3>
+            <p class="project-card__text">UK official statistics, plotted against who was in power at the time. Pulls nearly 200 indicators from the ONS, Home Office, NHS England and others, and lets you rebase, adjust for inflation and compare them side by side.</p>
+            <ul class="project-card__stack">
+              <li>Python</li><li>JavaScript</li><li>GitHub Actions</li><li>Cloudflare</li>
+            </ul>
+            <p class="project-card__links">
+              <a href="https://polyoptic.co/explore">Open the explorer →</a>
+              <a href="https://github.com/JMorris100/Polyoptic">Source</a>
+            </p>
+          </div>
+        </li>
+      </ul>
     </section>
 
     <!-- RECENT POSTS: add new <li> entries here when you publish -->
@@ -67,6 +92,7 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="site-footer__links">
+        <a href="/#projects">Projects</a>
         <a href="/about.html">About</a>
         <a href="/cv.html">CV</a>
         <a href="mailto:hello@morrisjb.com">Email</a>
