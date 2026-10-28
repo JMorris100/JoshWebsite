@@ -1,9 +1,6 @@
-__pycache__/
-*.pyc
-.venv/
-venv/
-.env
-.DS_Store
-node_modules/
-
-# data/bundle.json is committed on purpose — see data/README.md
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
