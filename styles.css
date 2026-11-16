@@ -15,10 +15,15 @@
   --accent: #5B8DB8;
   --accent-soft: #A9C7DE;
   --max-width: 560px;
-  --header-max: 1120px;
+  --header-max: 1680px;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --measure: 46rem;
   --shadow: rgba(27, 42, 54, 0.08);
   --bg-pattern-filter: none;
-  --bg-pattern-opacity: 0.085;
+  --bg-pattern-opacity: 0.14;
+  --pattern-line: rgba(46, 61, 71, 0.17);
+  --pattern-node: rgba(46, 61, 71, 0.32);
+  --pattern-accent: rgba(91, 141, 184, 0.75);
   color-scheme: light;
 }
 
@@ -36,7 +41,10 @@
     --accent-soft: #3F6584;
     --shadow: rgba(0, 0, 0, 0.45);
     --bg-pattern-filter: invert(1);
-    --bg-pattern-opacity: 0.12;
+    --bg-pattern-opacity: 0.16;
+    --pattern-line: rgba(169, 199, 222, 0.16);
+    --pattern-node: rgba(169, 199, 222, 0.32);
+    --pattern-accent: rgba(127, 175, 216, 0.8);
     color-scheme: dark;
   }
 }
@@ -52,7 +60,10 @@
   --accent-soft: #3F6584;
   --shadow: rgba(0, 0, 0, 0.45);
   --bg-pattern-filter: invert(1);
-  --bg-pattern-opacity: 0.12;
+  --bg-pattern-opacity: 0.16;
+  --pattern-line: rgba(169, 199, 222, 0.16);
+  --pattern-node: rgba(169, 199, 222, 0.32);
+  --pattern-accent: rgba(127, 175, 216, 0.8);
   color-scheme: dark;
 }
 
@@ -93,6 +104,17 @@ body::before {
   pointer-events: none;
 }
 
+/* Animated version drawn by bg.js; the static SVG above is the fallback */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+html.has-bg-canvas body::before { display: none; }
+
 /* ---------- Site header (full-width bar) ---------- */
 .site-header {
   border-bottom: 1px solid var(--border);
@@ -102,7 +124,7 @@ body::before {
 .site-header__inner {
   max-width: var(--header-max);
   margin: 0 auto;
-  padding: 1.1rem 2rem;
+  padding: 1.1rem var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -161,8 +183,11 @@ body::before {
 .page {
   max-width: var(--header-max);
   margin: 0 auto;
-  padding: 3.5rem 2rem 4rem;
+  padding: 3.5rem var(--gutter) 4rem;
 }
+
+/* Long text keeps a readable line length; sections and cards use the full width */
+.lede, .about-intro, .page > p, .article-content, .article-header, .year-group .post-excerpt, .post-excerpt { max-width: var(--measure); }
 
 /* ---------- Typography ---------- */
 h1, h2, h3, h4, .display {
@@ -382,7 +407,7 @@ blockquote {
 .site-footer__inner {
   max-width: var(--header-max);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem var(--gutter);
   font-size: 0.82rem;
   color: var(--faint);
   display: flex;
@@ -400,14 +425,14 @@ blockquote {
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {
   html { font-size: 17px; }
-  .site-header__inner { padding: 0.9rem 1.25rem; gap: 1rem; }
+  .site-header__inner { padding: 0.9rem var(--gutter); gap: 1rem; }
   .brand svg { height: 38px; }
   .site-nav { gap: 1.1rem; font-size: 0.84rem; }
-  .page { padding: 2.5rem 1.25rem 3rem; }
+  .page { padding: 2.5rem var(--gutter) 3rem; }
   .hero-title { font-size: 1.6rem; }
   .article-title { font-size: 1.7rem; }
   .cv-role-header { flex-direction: column; gap: 0.1rem; }
-  .site-footer__inner { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+  .site-footer__inner { padding: 1.5rem var(--gutter); flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 420px) {
@@ -432,17 +457,30 @@ a:focus-visible, .tag:focus-visible {
 @media print {
   .site-header, .site-footer { display: none; }
   body { background: #fff; color: #000; }
-  body::before, .theme-toggle { display: none; }
+  body::before, .theme-toggle, .bg-canvas { display: none; }
   a { color: #000; text-decoration: none; }
   .page { max-width: 100%; padding: 0; }
   .cv-section { page-break-inside: avoid; }
 }
 
 /* ---------- Project cards ---------- */
+/* A lone card on a wide screen sits sideways: image left, text right */
+@media (min-width: 900px) {
+  .project-card:only-child { grid-column: 1 / -1; flex-direction: row; }
+  .project-card:only-child .project-card__image {
+    flex: 0 0 44%; border-bottom: none; border-right: 1px solid var(--border);
+  }
+  .project-card:only-child .project-card__image img { height: 100%; }
+  .project-card:only-child .project-card__body { padding: 2rem 2.25rem; justify-content: center; }
+  .project-card:only-child .project-card__title { font-size: 1.6rem; }
+  .project-card:only-child .project-card__text { font-size: 1rem; max-width: 38rem; }
+  .project-card:only-child .project-card__links { margin-top: 0.5rem; }
+}
+
 .projects {
   list-style: none; padding: 0; margin: 1.5rem 0 0;
   display: grid; gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
 }
 .project-card {
   margin: 0;
